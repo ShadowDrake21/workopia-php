@@ -10,3 +10,63 @@ function basePath($path = '')
 {
   return __DIR__ . '/' . $path;
 }
+
+/**
+ * Load a view
+ * 
+ * @param string $path
+ * @return void
+ */
+function loadView($name)
+{
+  $viewPath = basePath("views/$name.view.php");
+
+  if (file_exists($viewPath)) {
+    require $viewPath;
+  } else {
+    echo "View '{$name}' not found!";
+  }
+}
+
+/**
+ * Load a partial
+ * 
+ * @param string $path
+ * @return void
+ */
+function loadPartial($name)
+{
+  $partialPath =  basePath("views/partials/$name.php");
+
+  if (file_exists($partialPath)) {
+    require $partialPath;
+  } else {
+    echo "Partial '{$name}' not found!";
+  }
+}
+
+/**
+ * Inspect a value(s)
+ * 
+ * @param mixed $value
+ * @return
+ */
+function inspect($value)
+{
+  echo '<pre>';
+  var_dump($value);
+  echo '</pre>';
+}
+
+/**
+ * Inspect a value(s) and die
+ * 
+ * @param mixed $value
+ * @return
+ */
+function inspectAndDie($value)
+{
+  echo '<pre>';
+  die(var_dump($value));
+  echo '</pre>';
+}
